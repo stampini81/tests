@@ -1,60 +1,30 @@
-# Permite arquivos de configuração adicionais em ExameDesenvolvedorDeTestes/web
-!ExameDesenvolvedorDeTestes/web/.env
-!ExameDesenvolvedorDeTestes/web/bun.lock
-!ExameDesenvolvedorDeTestes/web/README.md
-# .gitignore para subir apenas as pastas de testes
+# User Request: Exclude original project code
+ExameDesenvolvedorDeTestes/
 
-# Ignora tudo
+# Build results
+[Bb]in/
+[Oo]bj/
 
+# Node modules
+node_modules/
 
-# Exceto as pastas de testes na raiz
-!tests/
-!tests_extras/
+# IDE files
+.idea/
+.vscode/
+*.suo
+*.user
 
-# Permite docs e evidencias dentro de tests
-!tests/docs/
-!tests/evidencias/
-
-# Permite arquivos de configuração de testes
-!tests/**/*.md
-!tests/**/*.js
-!tests/**/*.cs
-!tests/**/*.png
-!tests/**/*.json
-!tests/**/*.ts
-!tests/**/*.tsx
-!tests/**/*.config.js
-!tests/**/*.cy.js
-
-# Permite tudo dentro de tests_extras
-!tests_extras/**
-
-# Permite pasta tests dentro de ExameDesenvolvedorDeTestes
-!ExameDesenvolvedorDeTestes/tests/**
-
-# Permite pasta tests e test-results dentro de ExameDesenvolvedorDeTestes/web
-!ExameDesenvolvedorDeTestes/web/tests/**
-!ExameDesenvolvedorDeTestes/web/test-results/**
-
-# Permite arquivos de configuração essenciais em ExameDesenvolvedorDeTestes/web
-!ExameDesenvolvedorDeTestes/web/package.json
-!ExameDesenvolvedorDeTestes/web/package-lock.json
-!ExameDesenvolvedorDeTestes/web/playwright.config.ts
-!ExameDesenvolvedorDeTestes/web/tsconfig.json
-!ExameDesenvolvedorDeTestes/web/tsconfig.app.json
-!ExameDesenvolvedorDeTestes/web/tsconfig.node.json
-!ExameDesenvolvedorDeTestes/web/vite.config.ts
-!ExameDesenvolvedorDeTestes/web/eslint.config.js
-!ExameDesenvolvedorDeTestes/web/postcss.config.js
-!ExameDesenvolvedorDeTestes/web/tailwind.config.js
-
-# Ignora arquivos temporários e de sistema
+# Logs
 *.log
-*.tmp
-*.DS_Store
-Thumbs.db
+cucumber_result.txt
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 
-# Ignora node_modules, bin, obj, etc
-**/node_modules/
-**/bin/
-**/obj/
+# OS files
+Thumbs.db
+Desktop.ini
+
+# Cypress
+cypress/videos
+cypress/screenshots

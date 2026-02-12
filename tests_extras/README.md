@@ -1,77 +1,87 @@
+# Testes Extras
 
-# Testes Extras (BDD, Selenium WebDriver, Page Object, Configuração YAML)
+Este diretório contém testes implementados com diferentes tecnologias e padrões para validar o sistema Minhas Finanças:
 
+1. **Cucumber + Selenium WebDriver (Ruby)**: Automação BDD com padrão Page Object.
+2. **Cypress (JavaScript)**: Testes E2E modernos para cenários complexos (exclusão em cascata).
 
-## Estrutura de Pastas e Arquivos
-
-
+## Estrutura
 
 ```
-features/
-   specs/                     # Cenários Gherkin (.feature)
-      menor_receita.feature
-      categoria_finalidade.feature
-   step_definitions/
-      selenium_steps.rb         # Steps Cucumber usando Page Object
-   support/
-      env.rb                   # Configuração Selenium, carregamento do YAML
-   pages/
-      pessoa_page.rb           # Page Object para tela de pessoas
-      categoria_page.rb        # Page Object para tela de categorias
-      transacao_page.rb        # Page Object para tela de transações
-   config/
-      test_config.yaml         # Configuração de ambientes (local, homolog, produção)
-cypress/
-   exclusao_cascata.cy.js     # Teste E2E Cypress para exclusão em cascata
-Gemfile                      # Dependências Ruby
+tests_extras/
+  features/                    # Cucumber BDD
+    specs/                     # Arquivos .feature (Gherkin)
+    step_definitions/          # Implementação dos steps (Ruby)
+    pages/                     # Page Objects (abstração da UI)
+    support/                   # Configuração e hooks
+    config/                    # Arquivos YAML de configuração
+  cypress/                     # Cypress E2E
+    exclusao_cascata.cy.js     # Cenário de exclusão em cascata
+  Gemfile                      # Dependências Ruby
 ```
 
-### Linguagens e Ferramentas
-- Ruby (Cucumber, Selenium WebDriver)
-- Page Object Pattern para organização dos testes
-- YAML para configuração de ambientes
-- Cypress (para alguns testes E2E)
+## Configuração
 
+### Ruby (Cucumber)
 
-## Como rodar os testes
-
-### Cucumber + Selenium WebDriver (Ruby)
-1. Instale Ruby ([https://rubyinstaller.org/](https://rubyinstaller.org/))
+1. Instale o Ruby 3.x+
 2. Instale as dependências:
-   ```sh
+   ```bash
    bundle install
    ```
-3. Execute os testes (ambiente local):
-   ```sh
+3. Execute os testes:
+   ```bash
    bundle exec cucumber
    ```
-   Para rodar em homologação ou produção:
-   ```sh
-   # No Windows PowerShell
-   $env:TEST_ENV="homolog"; bundle exec cucumber
-   # Ou para produção
-   $env:TEST_ENV="producao"; bundle exec cucumber
-   ```
 
-> Os testes usam o padrão Page Object, centralizando seletores e interações nas classes em `features/pages/`.
-> A configuração de ambiente (URLs, timeout) está em `features/config/test_config.yaml`.
+### Execução Otimizada (Tags)
 
+Para evitar rodar todos os testes de uma vez e ganhar tempo, utilize **tags** para filtrar os cenários. Esta é uma boa prática recomendada.
+
+**Comandos comuns:**
+
+*   **Rodar um grupo específico:**
+    ```bash
+    bundle exec cucumber -t @menor
+    ```
+*   **Rodar combinando tags (E):**
+    ```bash
+    bundle exec cucumber -t @categoria_despesa -t @menor1
+    ```
+*   **Rodar ignorando uma tag (NÃO):**
+    ```bash
+    bundle exec cucumber -t "not @wip"
+    ```
+
+**Tags Disponíveis neste Projeto:**
+*   `@menor` / `@menor1`: Cenários envolvendo pessoas menores de idade.
+*   `@maior`: Cenários envolvendo pessoas maiores de idade.
+*   `@categoria_despesa`: Testes específicos de Categoria do tipo Despesa.
+*   `@categoria_receita`: Testes específicos de Categoria do tipo Receita.
+*   `@categoria_ambas`: Testes específicos de Categoria do tipo Ambas.
+
+   
+   > **Nota**: Os steps foram otimizados para serem **idempotentes**. Se o registro (Pessoa/Categoria) já existir na interface, ele não tentará criar novamente, agilizando a execução.
 
 ### Cypress
-1. Instale Cypress:
-   ```sh
-   npm install cypress --save-dev
-   ```
-2. Execute Cypress:
-   ```sh
-   npx cypress open
-   ```
 
+1. Instale o Node.js e dependências (na raiz ou global)
+2. Para rodar o teste específico:
+   ```bash
+   # Necessário ter o Cypress instalado
+   npx cypress run --spec "tests_extras/cypress/exclusao_cascata.cy.js" --project .
+   # Ou abrir a interface:
+   npx cypress open --project .
+   ```
+   > Observação: O arquivo `cypress.config.js` está em `tests_extras/cypress/`, então pode ser necessário passar o caminho da config se não detectar automaticamente.
+
+## Cenários Cobertos
+
+- **Menor de idade não pode receita**: Validado via Cucumber (`menor_receita.feature`) e Cypress.
+- **Categoria e Finalidade**: Validação cruzada de Receita/Despesa/Ambas para Maior/Menor (`categoria_finalidade.feature`).
+- **Exclusão em Cascata**: Implementado em Cypress para garantir que remover uma pessoa remove suas transações.
 
 ## Observações
-- Os testes seguem os cenários propostos no enunciado.
-- Page Object facilita manutenção e reuso dos steps.
-- Configuração de ambiente via YAML permite rodar em local, homolog ou produção facilmente.
-- Exclusão em cascata está implementada como E2E (Cypress).
-- Não altere o código da aplicação.
-- Documente bugs encontrados em `docs/bugs.md`.
+
+- **Idempotência**: O Background dos testes Cucumber verifica se os dados já existem antes de criar, evitando duplicação e erros.
+- **Ambientes**: O arquivo `features/config/test_config.yaml` permite configurar URLs para Local, Homologação e Produção.

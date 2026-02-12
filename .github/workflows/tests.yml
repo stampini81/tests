@@ -1,0 +1,55 @@
+name: Test Validation
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  validate-tests:
+    runs-on: ubuntu-latest
+    
+    defaults:
+      run:
+        working-directory: ./tests_extras
+
+    steps:
+    - uses: actions/checkout@v3
+
+    # Setup Ruby for Cucumber
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: '3.0'
+        bundler-cache: true
+        working-directory: ./tests_extras
+
+    - name: Install Ruby Dependencies
+      run: bundle install
+
+    - name: Validate Cucumber Syntax (Dry Run)
+      run: bundle exec cucumber --dry-run
+      continue-on-error: true
+
+    # Setup Node for Cypress
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+        cache: 'npm'
+        cache-dependency-path: tests_extras/cypress/package-lock.json
+
+    - name: Install Cypress Dependencies
+      working-directory: ./tests_extras/cypress
+      run: npm ci
+
+    - name: Verify Cypress Installation
+      working-directory: ./tests_extras/cypress
+      run: npx cypress verify
+
+    - name: Warning about Missing App
+      run: |
+        echo "::warning::Application code (ExameDesenvolvedorDeTestes) is excluded from this repo."
+        echo "::warning::Tests cannot be executed against the running app in CI."
+        echo "::warning::Only syntax validation and dependency installation were performed."

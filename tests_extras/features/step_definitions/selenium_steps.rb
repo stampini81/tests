@@ -23,18 +23,11 @@ When('tento cadastrar uma receita para a pessoa maior {string} usando a categori
   @transacao_page.preencher_categoria(categoria)
   @transacao_page.salvar
 end
+require_relative '../support/api_service'
+
 # Step para: Given existe uma pessoa maior chamada {string} com data de nascimento {string}
 Given('existe uma pessoa maior chamada {string} com data de nascimento {string}') do |nome, data|
-  @driver.navigate.to "#{CONFIG['base_url']}/pessoas"
-  @pessoa_page.abrir_modal
-  @pessoa_page.preencher_nome(nome)
-  @pessoa_page.preencher_idade(data)
-  @pessoa_page.salvar
-  wait = Selenium::WebDriver::Wait.new(timeout: 8)
-  begin
-    wait.until { @driver.find_element(:xpath, "//button[contains(., 'Adicionar Pessoa')]").displayed? }
-  rescue Selenium::WebDriver::Error::TimeoutError
-  end
+  ApiService.criar_pessoa(nome, data)
 end
 
 # Step para: When tento cadastrar uma despesa para a pessoa menor {string}
@@ -53,11 +46,7 @@ end
 
 # Step para: Given existe uma categoria chamada {string} com finalidade {string}
 Given('existe uma categoria chamada {string} com finalidade {string}') do |nome, finalidade|
-  @driver.navigate.to "#{CONFIG['base_url']}/categorias"
-  @categoria_page.abrir_modal
-  @categoria_page.preencher_nome(nome)
-  @categoria_page.preencher_finalidade(finalidade)
-  @categoria_page.salvar
+  ApiService.criar_categoria(nome, finalidade)
 end
 
 # Step para: When tento cadastrar uma despesa para a pessoa maior {string}
@@ -172,53 +161,16 @@ end
 require 'rspec/expectations'
 # Step para: Given existe uma pessoa cadastrada com idade menor que {int} anos
 Given('existe uma pessoa cadastrada com idade menor que {int} anos') do |idade|
-  @driver.navigate.to "#{CONFIG['base_url']}/pessoas"
-  @pessoa_page.abrir_modal
-  @pessoa_page.preencher_nome('123456')
-  if @pessoa_page.respond_to?(:preencher_idade)
-    # Garante que o ano seja maior ou igual a 2010 para pessoa menor
-    hoje = Date.today
-    ano = [hoje.year - idade.to_i, 2010].max
-    data_nascimento = Date.new(ano, hoje.month, hoje.day).strftime('%Y-%m-%d')
-    @pessoa_page.preencher_idade(data_nascimento)
-  else
-    campo = @driver.find_element(:css, "input[name*='data'], input[placeholder*='Data']")
-    ano = [Date.today.year - idade.to_i, 2010].max
-    data_nascimento = Date.new(ano, Date.today.month, Date.today.day).strftime('%Y-%m-%d')
-    campo.send_keys(data_nascimento)
-  end
-  @pessoa_page.salvar
-  # Aguarda o modal fechar (botão de adicionar pessoa deve voltar a aparecer)
-  wait = Selenium::WebDriver::Wait.new(timeout: 8)
-  begin
-    wait.until { @driver.find_element(:xpath, "//button[contains(., 'Adicionar Pessoa')]").displayed? }
-  rescue Selenium::WebDriver::Error::TimeoutError
-    # Se não fechar, segue o fluxo para não travar o cenário
-  end
-  # Agora aguarda a pessoa aparecer na lista, mas não bloqueia o fluxo se não encontrar
-  begin
-    wait.until { @driver.find_elements(:xpath, "//td[contains(., 'Pessoa Menor')]").any? }
-  rescue Selenium::WebDriver::Error::TimeoutError
-    # Apenas loga, mas segue o fluxo
-    puts "Aviso: Pessoa Menor não apareceu na lista imediatamente. Prosseguindo com o teste."
-  end
-  # Após cadastrar e (tentar) verificar a pessoa, navega para o menu de transações
-  begin
-    menu_transacoes = @driver.find_element(:xpath, "//a[contains(@href, '/transacoes') or contains(., 'Transações')]")
-    menu_transacoes.click
-  rescue Selenium::WebDriver::Error::NoSuchElementError
-    # Se não encontrar o menu, tenta acessar diretamente
-    @driver.navigate.to "#{CONFIG['base_url']}/transacoes"
-  end
+  nome = 'Pessoa Menor'
+  hoje = Date.today
+  ano = [hoje.year - idade.to_i, 2010].max
+  data_nascimento = Date.new(ano, hoje.month, hoje.day).strftime('%d/%m/%Y')
+  ApiService.criar_pessoa(nome, data_nascimento)
 end
 
 # Step para: Given existe uma categoria cadastrada com finalidade {string}
 Given('existe uma categoria cadastrada com finalidade {string}') do |finalidade|
-  @driver.navigate.to "#{CONFIG['base_url']}/categorias"
-  @categoria_page.abrir_modal
-  @categoria_page.preencher_nome('Categoria Teste')
-  @categoria_page.preencher_finalidade(finalidade)
-  @categoria_page.salvar
+  ApiService.criar_categoria('Categoria Teste', finalidade)
 end
 
 Given('estou na página de cadastro de pessoas') do
@@ -226,31 +178,12 @@ Given('estou na página de cadastro de pessoas') do
 end
 
 Given('cadastro uma pessoa com idade menor que 18 anos') do
-  @pessoa_page.abrir_modal
-  @pessoa_page.preencher_nome('Teste Menor')
-  # Supondo que o método preencher_idade aceite data de nascimento ou idade
-  # Se for data de nascimento, ajuste o método na PessoaPage
-  if @pessoa_page.respond_to?(:preencher_idade)
-    @pessoa_page.preencher_idade('01/01/2016')
-  else
-    # fallback para campo data_nasc se necessário
-    campo = @driver.find_element(:css, "input[name*='data'], input[placeholder*='Data']")
-    campo.send_keys('01/01/2016')
-  end
-  @pessoa_page.salvar
+  nome = 'Teste Menor'
+  ApiService.criar_pessoa(nome, '01/01/2016')
 end
 
 Given('existe uma pessoa menor chamada {string} com data de nascimento {string}') do |nome, data|
-  @driver.navigate.to "#{CONFIG['base_url']}/pessoas"
-  @pessoa_page.abrir_modal
-  @pessoa_page.preencher_nome(nome)
-  @pessoa_page.preencher_idade(data)
-  @pessoa_page.salvar
-  wait = Selenium::WebDriver::Wait.new(timeout: 8)
-  begin
-    wait.until { @driver.find_element(:xpath, "//button[contains(., 'Adicionar Pessoa')]").displayed? }
-  rescue Selenium::WebDriver::Error::TimeoutError
-  end
+  ApiService.criar_pessoa(nome, data)
 end
 
 # Exemplo: você pode criar um TransacaoPage futuramente para encapsular essa lógica
@@ -298,7 +231,7 @@ end
 
 Then('o sistema deve exibir a mensagem de bloqueio de receita para menor') do
   erro = @transacao_page.mensagem_erro
-  expect(erro.downcase).to include('menores de 18 anos não podem registrar receitas')
+  expect(erro.downcase).to include('Menores de 18 anos não podem registrar receitas')
 end
 
 Given('estou na página de cadastro de categorias') do

@@ -99,6 +99,10 @@ class TransacaoPage
     campo.send_keys(data_valida)
   end
 
+  def mensagem_erro
+    @wait.until { @driver.find_element(:css, '.error, .alert-danger, .MuiAlert-message, [role="status"]') }.text
+  end
+
   private
   def overlay_presente?
     overlays = @driver.find_elements(:css, 'div[aria-hidden="true"][data-state="open"], div.bg-black\/80, div[data-aria-hidden="true"], div[aria-hidden="true"], div[data-state="open"]')
@@ -128,7 +132,5 @@ class TransacaoPage
     false
   end
 
-  def mensagem_erro
-    @wait.until { @driver.find_element(:css, '.error, .alert-danger, .MuiAlert-message') }.text
-  end
+
 end

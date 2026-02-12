@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { validarCategoriaParaMenor } from '@/lib/validacoes';
+import { validarCategoriaParaMenor } from './helpers/validacoes';
 
 // Função de exemplo para validação (deve ser mockada ou implementada no teste)
 // function validarCategoriaParaMenor(tipoCategoria: 'Receita' | 'Despesa' | 'Ambas', tipoTransacao: 'Receita' | 'Despesa', idade: number): boolean {

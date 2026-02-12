@@ -1,0 +1,11 @@
+default: &default
+  base_url: "http://localhost:5173"
+  timeout: 10
+
+homolog:
+  <<: *default
+  base_url: "https://homolog.seusistema.com"
+
+producao:
+  <<: *default
+  base_url: "https://app.seusistema.com"

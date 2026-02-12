@@ -17,17 +17,16 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
+    - name: Remove Windows Gemfile.lock
+      run: rm Gemfile.lock
+      working-directory: ./tests_extras
+
     # Setup Ruby for Cucumber
     - name: Set up Ruby
       uses: ruby/setup-ruby@v1
       with:
         ruby-version: '3.0'
-        bundler-cache: true
         working-directory: ./tests_extras
-
-    - name: Remove Windows Gemfile.lock
-      run: rm Gemfile.lock
-      working-directory: ./tests_extras
 
     - name: Install Ruby Dependencies
       run: bundle install

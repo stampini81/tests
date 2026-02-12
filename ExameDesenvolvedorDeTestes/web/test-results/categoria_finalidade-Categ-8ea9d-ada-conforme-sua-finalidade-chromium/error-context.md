@@ -1,0 +1,188 @@
+# Page snapshot
+
+```yaml
+- generic [active]:
+  - generic:
+    - generic:
+      - banner:
+        - generic:
+          - generic:
+            - generic:
+              - generic: Minhas Finanças
+              - generic: Gerencie seu dinheiro
+          - navigation:
+            - link:
+              - /url: /
+              - text: Dashboard
+            - link:
+              - /url: /transacoes
+              - text: Transações
+            - link:
+              - /url: /categorias
+              - text: Categorias
+            - link:
+              - /url: /totais
+              - text: Relatórios
+        - generic:
+          - generic:
+            - navigation:
+              - list:
+                - listitem:
+                  - link:
+                    - /url: /
+                    - text: Home
+                - listitem:
+                  - generic: /
+                  - link:
+                    - /url: /transacoes
+                    - text: Transacoes
+      - generic:
+        - complementary:
+          - navigation:
+            - list:
+              - listitem:
+                - link:
+                  - /url: /
+                  - text: Dashboard
+              - listitem:
+                - link:
+                  - /url: /transacoes
+                  - text: Transações
+              - listitem:
+                - link:
+                  - /url: /categorias
+                  - text: Categorias
+              - listitem:
+                - link:
+                  - /url: /pessoas
+                  - text: Pessoas
+              - listitem:
+                - link:
+                  - /url: /totais
+                  - text: Relatórios
+        - main:
+          - generic:
+            - generic:
+              - heading [level=1]: Transações
+              - button [expanded]: Adicionar Transação
+            - generic:
+              - table:
+                - rowgroup:
+                  - row:
+                    - columnheader: Data
+                    - columnheader: Descrição
+                    - columnheader: Valor
+                    - columnheader: Tipo
+                    - columnheader: Categoria
+                    - columnheader: Pessoa
+                - rowgroup:
+                  - row:
+                    - cell: 19/02/2026
+                    - cell: Teste
+                    - cell: R$ 5,77
+                    - cell: Despesa
+                    - cell
+                    - cell
+                  - row:
+                    - cell: 10/02/2026
+                    - cell: Alimentação
+                    - cell: R$ 1.000,00
+                    - cell: Despesa
+                    - cell
+                    - cell
+                  - row:
+                    - cell: 10/02/2026
+                    - cell: "123"
+                    - cell: R$ 1.500,00
+                    - cell: Despesa
+                    - cell
+                    - cell
+                  - row:
+                    - cell: 10/02/2026
+                    - cell: "1000"
+                    - cell: R$ 1.000,00
+                    - cell: Despesa
+                    - cell
+                    - cell
+                  - row:
+                    - cell: 10/02/2026
+                    - cell: "12345"
+                    - cell: R$ 123,00
+                    - cell: Despesa
+                    - cell
+                    - cell
+                  - row:
+                    - cell: 10/02/2026
+                    - cell: "1000"
+                    - cell: R$ 1.000,00
+                    - cell: Receita
+                    - cell
+                    - cell
+                  - row:
+                    - cell: 10/02/2026
+                    - cell: Receita Maior
+                    - cell: R$ 500,00
+                    - cell: Receita
+                    - cell
+                    - cell
+                  - row:
+                    - cell: 10/02/2026
+                    - cell: Despesa Menor
+                    - cell: R$ 50,00
+                    - cell: Despesa
+                    - cell
+                    - cell
+              - generic:
+                - generic:
+                  - generic:
+                    - generic: Mostrando 1 - 8 de 46
+                    - generic:
+                      - button [disabled]: Anterior
+                      - button: "1"
+                      - button: "2"
+                      - button: "3"
+                      - button: Próximo
+  - dialog "Adicionar Transação" [ref=e2]:
+    - heading "Adicionar Transação" [level=2] [ref=e4]
+    - generic [ref=e5]:
+      - generic [ref=e6]:
+        - text: Descrição
+        - textbox "Descrição" [ref=e7]:
+          - /placeholder: Digite a descrição
+          - text: Despesa Categoria
+      - generic [ref=e8]:
+        - text: Valor
+        - spinbutton "Valor" [ref=e9]: "50"
+      - generic [ref=e10]:
+        - text: Data
+        - textbox "Data" [ref=e11]: 2026-02-10
+      - generic [ref=e13]:
+        - text: Tipo
+        - combobox "Tipo" [ref=e14]:
+          - option "Despesa" [selected]
+          - option "Receita"
+      - generic [ref=e15]:
+        - text: Pessoa
+        - generic [ref=e16]:
+          - generic [ref=e17]:
+            - textbox "Lista de pessoas" [ref=e18]:
+              - /placeholder: Pesquisar pessoas...
+              - text: Pessoa Receita E2E
+            - button "Abrir lista" [ref=e19] [cursor=pointer]: Abrir
+          - generic [ref=e20]: "Selecionado: Pessoa Receita E2E"
+      - generic [ref=e21]:
+        - text: Categoria
+        - generic [ref=e22]:
+          - generic [ref=e23]:
+            - textbox "Lista de categorias" [ref=e24]:
+              - /placeholder: Pesquisar categorias...
+              - text: Categoria Receita E2E
+            - button "Abrir lista" [ref=e25] [cursor=pointer]: Abrir
+          - generic [ref=e26]: "Selecionado: Categoria Receita E2E"
+      - generic [ref=e27]:
+        - button "Cancelar" [ref=e28] [cursor=pointer]
+        - button "Salvar" [ref=e29] [cursor=pointer]
+    - button "Close" [ref=e30] [cursor=pointer]:
+      - img [ref=e31]
+      - generic [ref=e34]: Close
+```

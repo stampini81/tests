@@ -1,0 +1,127 @@
+# Page snapshot
+
+```yaml
+- generic [ref=e3]:
+  - banner [ref=e4]:
+    - generic [ref=e5]:
+      - generic [ref=e8]:
+        - generic [ref=e9]: Minhas Finanças
+        - generic [ref=e10]: Gerencie seu dinheiro
+      - navigation "Main navigation" [ref=e11]:
+        - link "Dashboard" [ref=e12] [cursor=pointer]:
+          - /url: /
+        - link "Transações" [ref=e13] [cursor=pointer]:
+          - /url: /transacoes
+        - link "Categorias" [ref=e14] [cursor=pointer]:
+          - /url: /categorias
+        - link "Relatórios" [ref=e15] [cursor=pointer]:
+          - /url: /totais
+    - navigation "breadcrumb" [ref=e18]:
+      - list [ref=e19]:
+        - listitem [ref=e20]:
+          - link "Home" [ref=e21] [cursor=pointer]:
+            - /url: /
+        - listitem [ref=e22]:
+          - generic [ref=e23]: /
+          - link "Transacoes" [ref=e24] [cursor=pointer]:
+            - /url: /transacoes
+  - generic [ref=e25]:
+    - complementary [ref=e26]:
+      - navigation [ref=e27]:
+        - list [ref=e28]:
+          - listitem [ref=e29]:
+            - link "Dashboard" [ref=e30] [cursor=pointer]:
+              - /url: /
+          - listitem [ref=e31]:
+            - link "Transações" [ref=e32] [cursor=pointer]:
+              - /url: /transacoes
+          - listitem [ref=e33]:
+            - link "Categorias" [ref=e34] [cursor=pointer]:
+              - /url: /categorias
+          - listitem [ref=e35]:
+            - link "Pessoas" [ref=e36] [cursor=pointer]:
+              - /url: /pessoas
+          - listitem [ref=e37]:
+            - link "Relatórios" [ref=e38] [cursor=pointer]:
+              - /url: /totais
+    - main [ref=e39]:
+      - generic [ref=e40]:
+        - generic [ref=e41]:
+          - heading "Transações" [level=1] [ref=e42]
+          - button "Adicionar Transação" [active] [ref=e43] [cursor=pointer]
+        - generic [ref=e44]:
+          - table "Tabela de dados" [ref=e45]:
+            - rowgroup [ref=e46]:
+              - row "Data Descrição Valor Tipo Categoria Pessoa" [ref=e47]:
+                - columnheader "Data" [ref=e48]
+                - columnheader "Descrição" [ref=e49]
+                - columnheader "Valor" [ref=e50]
+                - columnheader "Tipo" [ref=e51]
+                - columnheader "Categoria" [ref=e52]
+                - columnheader "Pessoa" [ref=e53]
+            - rowgroup [ref=e54]:
+              - row "19/02/2026 Teste R$ 5,77 Despesa" [ref=e55]:
+                - cell "19/02/2026" [ref=e56]
+                - cell "Teste" [ref=e57]
+                - cell "R$ 5,77" [ref=e58]
+                - cell "Despesa" [ref=e59]
+                - cell [ref=e60]
+                - cell [ref=e61]
+              - row "10/02/2026 Alimentação R$ 1.000,00 Despesa" [ref=e62]:
+                - cell "10/02/2026" [ref=e63]
+                - cell "Alimentação" [ref=e64]
+                - cell "R$ 1.000,00" [ref=e65]
+                - cell "Despesa" [ref=e66]
+                - cell [ref=e67]
+                - cell [ref=e68]
+              - row "10/02/2026 123 R$ 1.500,00 Despesa" [ref=e69]:
+                - cell "10/02/2026" [ref=e70]
+                - cell "123" [ref=e71]
+                - cell "R$ 1.500,00" [ref=e72]
+                - cell "Despesa" [ref=e73]
+                - cell [ref=e74]
+                - cell [ref=e75]
+              - row "10/02/2026 1000 R$ 1.000,00 Despesa" [ref=e76]:
+                - cell "10/02/2026" [ref=e77]
+                - cell "1000" [ref=e78]
+                - cell "R$ 1.000,00" [ref=e79]
+                - cell "Despesa" [ref=e80]
+                - cell [ref=e81]
+                - cell [ref=e82]
+              - row "10/02/2026 12345 R$ 123,00 Despesa" [ref=e83]:
+                - cell "10/02/2026" [ref=e84]
+                - cell "12345" [ref=e85]
+                - cell "R$ 123,00" [ref=e86]
+                - cell "Despesa" [ref=e87]
+                - cell [ref=e88]
+                - cell [ref=e89]
+              - row "10/02/2026 1000 R$ 1.000,00 Receita" [ref=e90]:
+                - cell "10/02/2026" [ref=e91]
+                - cell "1000" [ref=e92]
+                - cell "R$ 1.000,00" [ref=e93]
+                - cell "Receita" [ref=e94]
+                - cell [ref=e95]
+                - cell [ref=e96]
+              - row "10/02/2026 Receita Maior R$ 500,00 Receita" [ref=e97]:
+                - cell "10/02/2026" [ref=e98]
+                - cell "Receita Maior" [ref=e99]
+                - cell "R$ 500,00" [ref=e100]
+                - cell "Receita" [ref=e101]
+                - cell [ref=e102]
+                - cell [ref=e103]
+              - row "10/02/2026 Despesa Menor R$ 50,00 Despesa" [ref=e104]:
+                - cell "10/02/2026" [ref=e105]
+                - cell "Despesa Menor" [ref=e106]
+                - cell "R$ 50,00" [ref=e107]
+                - cell "Despesa" [ref=e108]
+                - cell [ref=e109]
+                - cell [ref=e110]
+          - generic [ref=e113]:
+            - generic [ref=e114]: Mostrando 1 - 8 de 49
+            - generic [ref=e115]:
+              - button "Anterior" [disabled] [ref=e116] [cursor=pointer]
+              - button "1" [ref=e117] [cursor=pointer]
+              - button "2" [ref=e118] [cursor=pointer]
+              - button "3" [ref=e119] [cursor=pointer]
+              - button "Próximo" [ref=e120] [cursor=pointer]
+```

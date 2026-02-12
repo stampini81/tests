@@ -1,0 +1,56 @@
+# .gitignore para subir apenas as pastas de testes
+
+# Ignora tudo
+
+
+# Exceto as pastas de testes na raiz
+!tests/
+!tests_extras/
+
+# Permite docs e evidencias dentro de tests
+!tests/docs/
+!tests/evidencias/
+
+# Permite arquivos de configuração de testes
+!tests/**/*.md
+!tests/**/*.js
+!tests/**/*.cs
+!tests/**/*.png
+!tests/**/*.json
+!tests/**/*.ts
+!tests/**/*.tsx
+!tests/**/*.config.js
+!tests/**/*.cy.js
+
+# Permite tudo dentro de tests_extras
+!tests_extras/**
+
+# Permite pasta tests dentro de ExameDesenvolvedorDeTestes
+!ExameDesenvolvedorDeTestes/tests/**
+
+# Permite pasta tests e test-results dentro de ExameDesenvolvedorDeTestes/web
+!ExameDesenvolvedorDeTestes/web/tests/**
+!ExameDesenvolvedorDeTestes/web/test-results/**
+
+# Permite arquivos de configuração essenciais em ExameDesenvolvedorDeTestes/web
+!ExameDesenvolvedorDeTestes/web/package.json
+!ExameDesenvolvedorDeTestes/web/package-lock.json
+!ExameDesenvolvedorDeTestes/web/playwright.config.ts
+!ExameDesenvolvedorDeTestes/web/tsconfig.json
+!ExameDesenvolvedorDeTestes/web/tsconfig.app.json
+!ExameDesenvolvedorDeTestes/web/tsconfig.node.json
+!ExameDesenvolvedorDeTestes/web/vite.config.ts
+!ExameDesenvolvedorDeTestes/web/eslint.config.js
+!ExameDesenvolvedorDeTestes/web/postcss.config.js
+!ExameDesenvolvedorDeTestes/web/tailwind.config.js
+
+# Ignora arquivos temporários e de sistema
+*.log
+*.tmp
+*.DS_Store
+Thumbs.db
+
+# Ignora node_modules, bin, obj, etc
+**/node_modules/
+**/bin/
+**/obj/

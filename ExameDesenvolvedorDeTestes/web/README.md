@@ -1,101 +1,48 @@
-# Testes Automatizados
+
+# Testes Automatizados — Frontend (web)
+
+Este diretório contém os testes automatizados do frontend da aplicação Minhas Finanças.
+
+## Estrutura dos testes
+
+- `tests/e2e/` — Testes End-to-End (E2E) com Playwright
+- `tests/unit/` — Testes unitários (Vitest)
+- `tests/integration/` — Testes de integração (Vitest)
+
+## Pré-requisitos
+
+- [Bun](https://bun.sh/) instalado globalmente
+- Dependências instaladas: `bun install`
+- Variáveis de ambiente configuradas em `.env` (se necessário)
 
 ## Como rodar os testes
 
-- **Unitários e Integração:**
-  ```sh
-  bun run test
-  ```
-- **E2E:**
-  ```sh
-  bun run test:e2e
-  ```
+### Unitários e Integração
 
-> **Nota:** Os testes E2E devem ser criados em `web/tests/e2e` para que o Playwright reconheça e execute corretamente, pois as dependências estão instaladas na pasta `web`.
-# Testes Automatizados
-
-## Como rodar os testes
-
-- **Unitários e Integração:**
-  ```sh
-  bun run test
-  ```
-- **E2E:**
-  ```sh
-  bun run test:e2e
-  ```
-
-> **Nota:** Os testes E2E devem ser criados em `web/tests/e2e` para que o Playwright reconheça e execute corretamente, pois as dependências estão instaladas na pasta `web`.
-# React + TypeScript + Vite
-
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```sh
+bun run test
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### E2E (End-to-End)
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```sh
+bun run test:e2e
 ```
+
+> Os testes E2E devem ser criados em `web/tests/e2e` para que o Playwright reconheça e execute corretamente.
+
+## Ferramentas utilizadas
+
+- [Playwright](https://playwright.dev/) — Testes E2E
+- [Vitest](https://vitest.dev/) — Testes unitários e integração
+- [Bun](https://bun.sh/) — Gerenciador de pacotes e execução de scripts
+
+## Observações
+
+- Certifique-se de que a aplicação backend está rodando antes de executar testes de integração/E2E.
+- O arquivo `.env` pode ser necessário para configurar endpoints de API ou variáveis de ambiente dos testes.
+- Resultados de execuções E2E são salvos em `test-results/`.
+
+---
+
+Para mais detalhes sobre a pirâmide de testes, regras de negócio e bugs conhecidos, consulte o README principal em `/tests/README.md`.

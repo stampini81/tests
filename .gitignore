@@ -1,3 +1,7 @@
+# Permite arquivos de configuração adicionais em ExameDesenvolvedorDeTestes/web
+!ExameDesenvolvedorDeTestes/web/.env
+!ExameDesenvolvedorDeTestes/web/bun.lock
+!ExameDesenvolvedorDeTestes/web/README.md
 # .gitignore para subir apenas as pastas de testes
 
 # Ignora tudo

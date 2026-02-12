@@ -1,4 +1,5 @@
 # Testes Automatizados — Minhas Finanças
+[![Test Validation](https://github.com/stampini81/tests/actions/workflows/tests.yml/badge.svg)](https://github.com/stampini81/tests/actions/workflows/tests.yml)
 
 ## Estrutura da Pirâmide de Testes
 

@@ -25,6 +25,10 @@ jobs:
         bundler-cache: true
         working-directory: ./tests_extras
 
+    - name: Remove Windows Gemfile.lock
+      run: rm Gemfile.lock
+      working-directory: ./tests_extras
+
     - name: Install Ruby Dependencies
       run: bundle install
 

@@ -228,7 +228,7 @@ Ao cadastrar uma transação para um menor de idade (campo "Tipo" bloqueado em "
 Para menores, apenas categorias do tipo Despesa ou Ambas devem ser listadas.
 
 **Evidências:**  
-![campo_categoria_receita_selecionada_onde_so_e_despesa_bug.png](../evidencias/campo_categoria_receita_selecionada_onde_so_e_despesa_bug.png)
+![campo_categoria_bug.png](../evidencias/campo_categoria_receita_bug.png)
 
 **Localização no código:**
 - Frontend: `web/src/components/molecules/TransacaoForm.tsx`

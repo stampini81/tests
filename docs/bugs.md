@@ -126,7 +126,7 @@ Cada registro deveria ter campos únicos (CPF, código, etc.) para diferenciaç�
 Dificulta auditoria, relatórios e pode causar confusão em operações financeiras.
 
 **Evidências:**  
-![pessoas_iguais.png](../evidencias/pessoas_iguais.png)
+![pessoas_iguais.png](../evidencias/pessoas_iguais_bug.png)
 ![categorias_iguais.png](../evidencias/categorias_iguais.png)
 ![transacao_iguais.png](../evidencias/transacao_iguais.png)
 

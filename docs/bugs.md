@@ -350,8 +350,6 @@ Ao salvar transação sem preencher a data, exibe mensagem técnica: "Invalid in
 **Comportamento esperado:**  
 "Por favor, preencha a data da transação."
 
-**Evidências:**  
-![erro_data_nao_preenchida_bug.png](../evidencias/erro_data_nao_preenchida_bug.png)
 
 **Localização no código:**
 - Frontend: `web/src/components/molecules/TransacaoForm.tsx`
